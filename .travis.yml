@@ -1,0 +1,33 @@
+sudo: false
+language: python
+python:
+- '2.7'
+- '3.4'
+- '3.5'
+- '3.6'
+install: pip install tox-travis codecov
+script: tox
+deploy:
+  # Test PyPI in every change to master
+  - provider: pypi
+    server: https://test.pypi.org/legacy/
+    user: KyleJamesWalker
+    password:
+      secure: sLVT5a1J9mjGor5iJzje7pvgHhHjdXdueUHIU7DHAuRj/ZGGzDxSCGQm0nG+TlTxJZYBTPeywJJWV6ekkBi4FjJto+jYblhezl1kVOV/CEstIJzlik994IaHhnzYadxmg50kTtUnhpS31zXiuN6CFM77x+arEiR1v2TJbxbnBy2sO1UbwRSzyl7xeQefWcTjH5zWs+gtr9Hz4QIe6DGJHgj18g54jdIcl/fSOuqjEsj8zW/xqFbRApCr7Iiu4UKRksHfXZorsGFIcY1zk9U+8jejhRtQupz/VlVLlpPe9FPOwLCZeTBnwuOlP1ylzlGYq1PlNY8i4mo95CTdexqSZnq6gY47yyF+NOF660Z1BINuZm5qqNAKgcDayxgHMLIKasTu1GDTdkCSkgwl+M+kfKSdpmlhlKDbWYGp5p7DHYfxK9JczmogHhKw4zU5Sf5kyohmkzLvijgrVzOWSYUQYwCxiPEBCQk6qZsEzC0roQA3xuGobaI0k+LTHSeYLDmL/RuJiz+fLQqpryWNj8LHbV+ps4kDMmFDkTKHtgMjEArIohfWMKlvs1Vu6kllp4LPh3ll9roopu9t6lJojdYePuLTZ/HKxFx6QC9z9ogdXSMkBwC843reKTEmoBjsiLJxV59QRTlaj2osw/wl7UwVdGgbclb21aYhJRrkaUtcU/4=
+    distributions: "sdist bdist_wheel"
+    on:
+      # branch: master
+      all_branches: true
+      tags: false
+      python: 3.6
+  # Real PyPI in tags (ie. GitHub releases)
+  - provider: pypi
+    user: KyleJamesWalker
+    password:
+      secure: sLVT5a1J9mjGor5iJzje7pvgHhHjdXdueUHIU7DHAuRj/ZGGzDxSCGQm0nG+TlTxJZYBTPeywJJWV6ekkBi4FjJto+jYblhezl1kVOV/CEstIJzlik994IaHhnzYadxmg50kTtUnhpS31zXiuN6CFM77x+arEiR1v2TJbxbnBy2sO1UbwRSzyl7xeQefWcTjH5zWs+gtr9Hz4QIe6DGJHgj18g54jdIcl/fSOuqjEsj8zW/xqFbRApCr7Iiu4UKRksHfXZorsGFIcY1zk9U+8jejhRtQupz/VlVLlpPe9FPOwLCZeTBnwuOlP1ylzlGYq1PlNY8i4mo95CTdexqSZnq6gY47yyF+NOF660Z1BINuZm5qqNAKgcDayxgHMLIKasTu1GDTdkCSkgwl+M+kfKSdpmlhlKDbWYGp5p7DHYfxK9JczmogHhKw4zU5Sf5kyohmkzLvijgrVzOWSYUQYwCxiPEBCQk6qZsEzC0roQA3xuGobaI0k+LTHSeYLDmL/RuJiz+fLQqpryWNj8LHbV+ps4kDMmFDkTKHtgMjEArIohfWMKlvs1Vu6kllp4LPh3ll9roopu9t6lJojdYePuLTZ/HKxFx6QC9z9ogdXSMkBwC843reKTEmoBjsiLJxV59QRTlaj2osw/wl7UwVdGgbclb21aYhJRrkaUtcU/4=
+    distributions: "sdist bdist_wheel"
+    on:
+      tags: true
+      python: 3.6
+after_success:
+- codecov
