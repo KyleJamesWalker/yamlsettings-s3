@@ -24,7 +24,7 @@ setup(
     version='1.0.0',
     author='Kyle Walker',
     author_email='KyleJamesWalker@gmail.com',
-    description='YamlSettings Request Extension',
+    description='YamlSettings S3 Extension',
     long_description=readme,
     py_modules=['yamlsettings_s3'],
     extras_require=requirements,

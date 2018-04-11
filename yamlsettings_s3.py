@@ -13,9 +13,10 @@ class S3Extension(YamlSettingsExtension):
                     load_method, **kwargs):
         """Load Target from S3"""
         client = boto3.client('s3')
-        data = s3.get_object(
-            'Bucket': 'Bucket',
-            'Key': 'example/config.yaml',
+
+        data = client.get_object(
+            Bucket=hostname,
+            Key=path.lstrip('/'),
         )['Body'].read()
 
         return load_method(data)
