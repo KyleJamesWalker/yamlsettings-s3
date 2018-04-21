@@ -8,22 +8,24 @@ python:
 install: pip install tox-travis codecov
 script: tox
 deploy:
-  matrix:
+  # Test PyPI in every change to master
   - provider: pypi
     server: https://test.pypi.org/legacy/
     user: KyleJamesWalker
     password:
       secure: Jo7sSLpjG2/W5KDZFu8tNYQHgQdC0/8gDbrmBIPcPyk/Fdvkg8hwYTCOKHpifBmdnNfbE55vfH9nLmvBnuOqeXjfLIbiW5srxA48bup3yO3CitlkON0r/1KkaY3CrYsbuN6Ymv/yYvf5CCGbVmoFNroV/iV2BzV2A6W+B9mqkGXTuOYv7xYnkU0x86oNg8tppPRTZStM1hL7WqbgmN1CtfLD1h5U3k+Bi/iACzHzFcCKWFsTHPP5NzOwOVNfK67L82Il9OfyRWWlpQBc51haA82XHKcUl9yvtN+u5S1ypsVCPW43AMdWqb3RfeTKoaQx1+WfOzHuw6GtABZozM+BbPwgU6N+Ea6UYjxUzgePwzI70ez++EMLlVveyfXUpDr5TkNXyHCJtZjBNqAqtBcqgfzxV2k6h0oEZSb6j5F8LxkVSlf3YG6LHFNTJsO/6GDg81Oxz3H3fl7e8oPI9CvD/xdJTj1o3p2FKSddhUlF8tgG8ZPsdt+Rk57fAef/ybQ5ZeTrty30FRYMkjyHEacnHOzsCnNZBLeUqMJ4AazXTpVjmaMEG+AuFRf7/2tUYJgH/2udpSNwg1+j7q3NbJhNFye2tBpgco9rjkIrnTzqu/BFaVwwbgVtj9ByAIspJBoBaMVqsulqf7bovkLQ/TO+aCorXtHzTnUh6oQepEnzMAA=
-    distributions: sdist bdist_wheel
+    distributions: "sdist bdist_wheel"
     on:
+      # branch: master
       all_branches: true
       tags: false
       python: 3.6
+  # Real PyPI in tags (ie. GitHub releases)
   - provider: pypi
     user: KyleJamesWalker
     password:
       secure: Jo7sSLpjG2/W5KDZFu8tNYQHgQdC0/8gDbrmBIPcPyk/Fdvkg8hwYTCOKHpifBmdnNfbE55vfH9nLmvBnuOqeXjfLIbiW5srxA48bup3yO3CitlkON0r/1KkaY3CrYsbuN6Ymv/yYvf5CCGbVmoFNroV/iV2BzV2A6W+B9mqkGXTuOYv7xYnkU0x86oNg8tppPRTZStM1hL7WqbgmN1CtfLD1h5U3k+Bi/iACzHzFcCKWFsTHPP5NzOwOVNfK67L82Il9OfyRWWlpQBc51haA82XHKcUl9yvtN+u5S1ypsVCPW43AMdWqb3RfeTKoaQx1+WfOzHuw6GtABZozM+BbPwgU6N+Ea6UYjxUzgePwzI70ez++EMLlVveyfXUpDr5TkNXyHCJtZjBNqAqtBcqgfzxV2k6h0oEZSb6j5F8LxkVSlf3YG6LHFNTJsO/6GDg81Oxz3H3fl7e8oPI9CvD/xdJTj1o3p2FKSddhUlF8tgG8ZPsdt+Rk57fAef/ybQ5ZeTrty30FRYMkjyHEacnHOzsCnNZBLeUqMJ4AazXTpVjmaMEG+AuFRf7/2tUYJgH/2udpSNwg1+j7q3NbJhNFye2tBpgco9rjkIrnTzqu/BFaVwwbgVtj9ByAIspJBoBaMVqsulqf7bovkLQ/TO+aCorXtHzTnUh6oQepEnzMAA=
-    distributions: sdist bdist_wheel
+    distributions: "sdist bdist_wheel"
     on:
       tags: true
       python: 3.6
