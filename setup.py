@@ -22,7 +22,7 @@ requirements.update(all=sorted(set().union(*requirements.values())))
 
 setup(
     name='yamlsettings-s3',
-    version='0.0.1',
+    version='1.0.0',
     author='Kyle Walker',
     author_email='KyleJamesWalker@gmail.com',
     description='YamlSettings S3 Extension',
